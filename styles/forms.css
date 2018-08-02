@@ -1,0 +1,30 @@
+/* form elements */
+form {
+margin-top: 10px; 
+margin-bottom: 10px; 
+padding-top: 10px; 
+padding-bottom: 10px; 
+padding-left: 5px; 
+padding-right: 5px; 
+border-top: 1px solid #EEE8E1; 
+border-bottom: 1px solid #EEE8E1; 
+background: #FAF7F5;
+}
+form p {
+/*border-bottom: 1px solid #ECE5DD;
+padding: 12px 0 5px 0;	margin: 0;	*/
+}
+/*label {
+font-weight: bold;
+color: #A7743B;
+}*/
+input, select, textarea {
+margin: 5px 0;
+padding: 2px;
+color: #6A6969;
+border-width: 1px;
+border-style: solid;
+border-color: #d4d4d4 #ebebeb #ebebeb #d4d4d4; 
+font-size: 1.1em;
+}
+option { padding-right: 0.5em; } 

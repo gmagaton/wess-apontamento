@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.custom.i18n.resources" value="globalMessages" />
+	<constant name="struts.i18n.encoding" value="LATIN1" />  
+	<constant name="struts.locale" value="pt_BR"/> 
+	<constant name="struts.url.includeParams" value="none" /> 
+  	<constant name="struts.action.extension" value="action" />
+  	<constant name="struts.devMode" value="true" />
+  	<constant name="struts.configuration.xml.reload" value="true" />
+  	<constant name="struts.urlRenderer" value="true" />
+	
+	<package name="skilltec-sec" extends="struts-default,json-default">
+		<interceptors>
+	        <interceptor name="skilltecSecurity" class="com.cec.skilltec.web.SecurityInterceptor"/>
+		    <interceptor-stack name="skilltecStack">	
+				<interceptor-ref name="skilltecSecurity"/>
+				<interceptor-ref name="validationWorkflowStack"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+	    </interceptors>
+	 </package>	
+	
+	
+	
+	
+	<package name="skillTec" extends="skilltec-sec">
+    	<result-types>
+			<result-type name="jasper" class="org.apache.struts2.views.jasperreports.JasperReportsResult" />
+       	</result-types>
+       	
+       	
+		<action name="index" class="com.cec.skilltec.web.ProfileAction">
+        	<result name="input">/index.jsp</result>      
+        </action>
+		        
+        <action name="doLogin" method="doLogin" class="com.cec.skilltec.web.ProfileAction">
+        	<result name="success">index_sistema.jsp</result> 
+        	<result name="input">/index.jsp</result>      
+        </action>
+        
+        <action name="doLogout" method="doLogout" class="com.cec.skilltec.web.ProfileAction">
+        	<result name="input">/index.jsp</result>   
+        	<result name="notLogged">/notLogged.jsp</result>  
+        	<result name="notPermited">/notPermited.jsp</result>         
+        	<interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>
+        
+        
+	</package>
+			 
+    <package name="cadastros"  extends="skillTec">
+    	<action name="TodosEstados" method="getEstadosJson" class="com.cec.skilltec.web.UtilAction">
+        	<result type="json"></result>    
+        	<result name="notLogged">/notLogged.jsp</result>  
+        	<result name="notPermited">/notPermited.jsp</result>       
+        	<interceptor-ref name="skilltecStack"></interceptor-ref>           
+        </action>  
+        <action name="Empresa*" method="{1}" class="com.cec.skilltec.web.EmpresaAction">
+            <result name="input">/cadastros/empresa.jsp</result>
+            <result name="success">/cadastros/empresa_listagem.jsp</result>
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>       
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>   
+        
+        <action name="TipoProjeto*" method="{1}" class="com.cec.skilltec.web.TipoProjetoAction">
+            <result name="input">/cadastros/tipo_projeto.jsp</result>
+            <result name="success">/cadastros/tipo_projeto_listagem.jsp</result>
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>       
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>  
+        
+        <action name="Atividade*" method="{1}" class="com.cec.skilltec.web.AtividadeAction">
+        	<result name="input">/cadastros/atividade.jsp</result>
+            <result name="success">/cadastros/atividade_listagem.jsp</result>
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>       
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>  
+        
+        <action name="Projeto*" method="{1}" class="com.cec.skilltec.web.ProjetoAction">
+            <result name="input">/cadastros/projeto.jsp</result>
+            <result name="error">/cadastros/projeto.jsp</result>
+            <result name="success">/cadastros/projeto_listagem.jsp</result>   
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>              
+            <interceptor-ref name="skilltecStack"></interceptor-ref>      
+        </action>  
+       
+        <action name="TipoDespesa*" method="{1}" class="com.cec.skilltec.web.TipoDespesaAction">
+        	<result name="input">/cadastros/tipo_despesa.jsp</result>
+            <result name="success">/cadastros/tipo_despesa_listagem.jsp</result>
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>       
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>  
+        
+        <action name="TipoHora*" method="{1}" class="com.cec.skilltec.web.TipoHoraAction">
+        	<result name="input">/cadastros/tipo_hora.jsp</result>
+            <result name="success">/cadastros/tipo_hora_listagem.jsp</result>
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>       
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>  
+        
+        <action name="Consultor*" method="{1}" class="com.cec.skilltec.web.ConsultorAction">
+        	<result name="input">/cadastros/consultor.jsp</result>
+            <result name="success">/cadastros/consultor_listagem.jsp</result>
+            <result name="alterar_profile">/cadastros/profile.jsp</result>
+            <result name="main">index_sistema.jsp</result>
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>       
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action> 
+        
+        <action name="Cliente*" method="{1}" class="com.cec.skilltec.web.ClienteAction">
+        	<result name="input">/cadastros/cliente.jsp</result>
+            <result name="success">/cadastros/cliente_listagem.jsp</result>
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>       
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action> 
+        
+        <action name="AlocaRecurso*" method="{1}" class="com.cec.skilltec.web.ProjetoConsultoresAction">
+        	<result name="input">/cadastros/aloca_recurso.jsp</result>
+            <result name="atividades_por_projeto">/cadastros/aloca_recurso_atividades.jsp</result>
+            <result name="add_atividade">/cadastros/aloca_recurso_add_atividade.jsp</result>    
+            <result name="tabelaPrecosConsultor">/cadastros/preco_consultor.jsp</result>  
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>               
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>  
+        
+        <action name="AlocaRecursoAddAtividade" method="insertOrUpdate" class="com.cec.skilltec.web.ProjetoConsultoresAction">
+        	<result name="input">/cadastros/aloca_recurso_add_atividade.jsp</result>
+            <result name="atividades_por_projeto">/cadastros/aloca_recurso_atividades.jsp</result>
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>           
+            <interceptor-ref name="skilltecStack"></interceptor-ref>            
+        </action>  
+        
+
+        <action name="Apontamento*" method="{1}" class="com.cec.skilltec.web.ApontamentoAction">
+        	<result name="input">/cadastros/apontamento_hora.jsp</result>
+            <result name="apontamentos_por_projeto_consultor">/cadastros/apontamentos_projeto_consultor.jsp</result>
+            <result name="apontar_atividade_consultor">/cadastros/apontar_atividade_consultor.jsp</result>
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>                 
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>
+        
+        <action name="ApontarAtividadeConsultor" method="insertOrUpdate" class="com.cec.skilltec.web.ApontamentoAction">
+        	<result name="input">/cadastros/apontar_atividade_consultor.jsp</result>
+            <result name="apontamentos_por_projeto_consultor">/cadastros/apontamentos_projeto_consultor.jsp</result>
+            <result name="apontar_atividade_consultor">/cadastros/apontar_atividade_consultor.jsp</result>
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>                 
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>  
+        
+        <action name="Despesas*" method="{1}" class="com.cec.skilltec.web.DespesaProjetoAction">
+        	<result name="input">/cadastros/despesa_projeto.jsp</result>
+            <result name="despesas_por_projeto">/cadastros/despesas_por_projeto.jsp</result>
+            <result name="apontar_despesas_projeto">/cadastros/despesa_adicionar_gastos.jsp</result>    
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>             
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>
+        
+        <action name="ApontarDespesaProjeto" method="insertOrUpdate" class="com.cec.skilltec.web.DespesaProjetoAction">
+        	<result name="input">/cadastros/despesa_adicionar_gastos.jsp</result>
+            <result name="despesas_por_projeto">/cadastros/despesas_por_projeto.jsp</result>
+            <result name="apontar_despesas_projeto">/cadastros/despesa_adicionar_gastos.jsp</result>  
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>               
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>
+        
+       <action name="TabelaPreco*" method="{1}" class="com.cec.skilltec.web.TabelaPrecosAction">
+        	<result name="input">/cadastros/preco_consultor.jsp</result>
+            <result name="tabelaPrecosConsultor">/cadastros/preco_consultor.jsp</result>          
+            <result name="tabelaPrecosCliente">/cadastros/preco_cliente.jsp</result> 
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>       
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>  
+        
+        <action name="FichaApropriacao*" method="{1}" class="com.cec.skilltec.web.FichaApropriacaoAction">
+        	<result name="input">/cadastros/ficha_apropriacao.jsp</result>
+        	<result name="fa_listagem">/cadastros/ficha_apropriacao_listagem.jsp</result>
+        	<result name="FA_PDF" type="jasper">
+				<param name="location">/relatorios/rlt_ficha_apropriacao.jasper</param>
+				<param name="dataSource">dadosRelatorio</param>
+				<param name="documentName">FichaApropriacao</param>		
+			</result>	
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>       
+            <interceptor-ref name="skilltecStack"></interceptor-ref>    
+        </action>  
+        
+    </package>
+    
+    <package name="relatorios"  extends="skillTec">
+    	
+        <action name="Relatorios" class="com.cec.skilltec.web.reports.BuildQueryAction">
+            <result name="input">/relatorios/buildQuery.jsp</result>       
+            <result name="notLogged">/notLogged.jsp</result>  
+            <result name="notPermited">/notPermited.jsp</result>         
+            <interceptor-ref name="skilltecStack"></interceptor-ref>       
+        </action>  
+                
+        <action name="VisualizarRelatorioHtml" class="com.cec.skilltec.web.reports.BuildQueryAction" method="relatorioHTML">
+        	<interceptor-ref name="skilltecStack"></interceptor-ref>    
+        	<result name="notLogged">/notLogged.jsp</result>  
+        	<result name="notPermited">/notPermited.jsp</result>       	
+			<result name="total_horas_consultores_PDF" type="jasper">
+				<param name="location">/relatorios/rlt_horas_consultores.jasper</param>
+				<param name="dataSource">dadosRelatorio</param>
+				<param name="documentName">TotalHorasConsultores</param>		
+			</result>						
+			<result name="total_horas_clientes_PDF" type="jasper">
+				<param name="location">/relatorios/rlt_horas_clientes.jasper</param>
+				<param name="dataSource">dadosRelatorio</param>
+				<param name="documentName">TotalHorasClientes</param>		
+			</result>
+			<result name="total_horas_consultor_logado_PDF" type="jasper">
+				<param name="location">/relatorios/rlt_horas_consultores.jasper</param>
+				<param name="dataSource">dadosRelatorio</param>
+				<param name="documentName">TotalHorasConsultor</param>		
+			</result>
+			<result name="total_horas_consultor_detalhado_PDF" type="jasper">
+				<param name="location">/relatorios/rlt_horas_clientes.jasper</param>
+				<param name="dataSource">dadosRelatorio</param>
+				<param name="documentName">TotalHorasDetalhado</param>		
+			</result>
+			
+			<result name="total_horas_despesas_por_cliente_PDF" type="jasper">
+				<param name="location">/relatorios/rlt_horas_despesas_por_cliente.jasper</param>
+				<param name="dataSource">dadosRelatorio</param>
+				<param name="documentName">TotalHorasPorCliente</param>		
+			</result>
+			
+			
+			
+			<result name="input">/relatorios/buildQuery.jsp</result>
+		</action>
+        
+        
+    </package>
+
+    
+    
+</struts>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.autoReconnect">true</property>
+        <property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+        <property name="hbm2ddl.auto">update</property>
+        
+        <mapping class="com.cec.skilltec.dto.Consultores" />
+        <mapping class="com.cec.skilltec.dto.TiposProjeto" />
+        <mapping class="com.cec.skilltec.dto.Clientes" />
+        <mapping class="com.cec.skilltec.dto.ApontamentosHoras" />
+        <mapping class="com.cec.skilltec.dto.DespesasProjetos" />
+        <mapping class="com.cec.skilltec.dto.FichaApropriacoes" />
+        <mapping class="com.cec.skilltec.dto.ProjetosHasConsultores" />
+        <mapping class="com.cec.skilltec.dto.Login" />
+        <mapping class="com.cec.skilltec.dto.PrincipaisEmpresas" />
+        <mapping class="com.cec.skilltec.dto.Empresas" />
+        <mapping class="com.cec.skilltec.dto.TiposHorasProjeto" />
+        <mapping class="com.cec.skilltec.dto.Projetos" />
+        <mapping class="com.cec.skilltec.dto.PrecosClientes" />
+        <mapping class="com.cec.skilltec.dto.PrecosConsultores" />
+        <mapping class="com.cec.skilltec.dto.TiposDespesas" />
+        <mapping class="com.cec.skilltec.dto.TiposHoras" />
+        <mapping class="com.cec.skilltec.dto.Atividades" />
+        
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<type-mapping>
+		<sql-type jdbc-type="INTEGER" hibernate-type="Integer"
+			not-null="true">
+		</sql-type>
+		<sql-type jdbc-type="DOUBLE" hibernate-type="Double"
+			precision="22" not-null="true">
+		</sql-type>
+	</type-mapping>
+	
+	<table catalog="" name="atividades">
+		<primary-key>
+			<generator class="increment"></generator>
+		</primary-key>
+	</table>
+	<table catalog="" name="apontamentos_horas">
+		<primary-key>
+			<generator class="increment"></generator>
+		</primary-key>
+	</table>
+	<table catalog="" name="clientes">
+		<primary-key>
+			<generator class="increment"></generator>
+		</primary-key>
+	</table>
+	<table catalog="" name="consultores">
+		<primary-key>
+			<generator class="increment"></generator>
+		</primary-key>
+	</table>
+	<table catalog="" name="empresas">
+		<primary-key>
+			<generator class="increment"></generator>
+		</primary-key>
+	</table>
+	<table catalog="" name="projetos">
+		<primary-key>
+			<generator class="increment"></generator>
+		</primary-key>
+	</table>
+	<table catalog="" name="tipos_despesas">
+		<primary-key>
+			<generator class="increment"></generator>
+		</primary-key>
+	</table>
+	<table catalog="" name="tipos_horas">
+		<primary-key>
+			<generator class="increment"></generator>
+		</primary-key>
+	</table>
+	<table catalog="" name="tipos_projeto">
+		<primary-key>
+			<generator class="increment"></generator>
+		</primary-key>
+	</table>
+	<table catalog="" name="despesas_projetos">
+		<primary-key>
+			<generator class="increment"></generator>
+		</primary-key>
+	</table>
+	<table catalog="" name="projetos_has_consultores">
+		<primary-key>
+			<generator class="increment"></generator>
+		</primary-key>
+	</table>
+</hibernate-reverse-engineering>
